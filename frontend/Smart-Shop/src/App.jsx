@@ -18,7 +18,7 @@ import Footer from "./components/Footer"
 import ForgetPassword from "./pages/ForgetPassword";
 import ForgotPasswordRequest from "./pages/ForgotPasswordRequest";
 import ResetPassword from "./pages/ResetPassword";
-import ProfileInfo from "./pages/profileInfo";
+import ProfileInfo from './pages/ProfileInfo';
 import ChatBot from "./components/ChatBox"
 import OrderDetails from "./pages/OrderDetails"
 import AdminDashboard from "./pages/AdminDashboard";
