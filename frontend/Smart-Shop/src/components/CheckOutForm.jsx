@@ -132,7 +132,7 @@ const CheckOutForm = ({ placeOrder, selectedItems = [] }) => {
             console.log("Razorpay payment response:", response);
             try {
               const verifyRes = await axios.post(
-                "http://localhost:3000/api/payment/verify",
+                "https://smart-shop-backend-hofb.onrender.com/api/payment/verify",
                 {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
