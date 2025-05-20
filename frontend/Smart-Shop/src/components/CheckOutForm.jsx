@@ -116,7 +116,7 @@ const CheckOutForm = ({ placeOrder, selectedItems = [] }) => {
         const token = localStorage.getItem("token");
 
         const { data: razorpayOrder } = await axios.post(
-          "http://localhost:3000/api/payment/razorpay",
+          "https://smart-shop-backend-hofb.onrender.com/api/payment/razorpay",
           orderData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
