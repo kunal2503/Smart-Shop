@@ -18,7 +18,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
+    origin: "https://smart-shop-jids.vercel.app", // Updated to deployed frontend URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 app.use(express.json());
