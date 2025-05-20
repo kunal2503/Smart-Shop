@@ -17,9 +17,21 @@ const chatBotRoutes = require("./routes/chatBotRoutes");
 const app = express();
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'https://smart-shop-jids.vercel.app'
+];
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://smart-shop-jids.vercel.app'],
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // Required if you use cookies or auth headers
 }));
 
 app.use(express.json());
