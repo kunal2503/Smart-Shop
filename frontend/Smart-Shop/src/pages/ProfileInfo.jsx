@@ -34,7 +34,7 @@ const ProfileInfo = () => {
     }
 
     setLoading(true);
-    axiosInstance.get(`http://localhost:3000/api/users/profile/${userId}`, {
+axiosInstance.get(`https://smart-shop-backend-hofb.onrender.com/api/users/profile/${userId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((res) => {
@@ -83,7 +83,7 @@ const ProfileInfo = () => {
     }
 
     setLoading(true);
-    axiosInstance.put(`http://localhost:3000/api/users/profile/${userId}`,
+axiosInstance.put(`https://smart-shop-backend-hofb.onrender.com/api/users/profile/${userId}`,
       { name, email, address, zip, city, country, state, phoneNo },
       { headers: { Authorization: `Bearer ${token}` } }
     )
@@ -115,7 +115,7 @@ const ProfileInfo = () => {
     }
 
     setLoading(true);
-    axiosInstance.delete(`http://localhost:3000/api/users/profile/${userId}`, {
+axiosInstance.delete(`https://smart-shop-backend-hofb.onrender.com/api/users/profile/${userId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {

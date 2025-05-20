@@ -24,7 +24,7 @@ const Signup = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try{
-            const response = await axiosInstance.post("http://localhost:3000/api/auth/signup",form)
+const response = await axiosInstance.post("https://smart-shop-backend-hofb.onrender.com/api/auth/signup",form)
 
             const {token , user } = response.data;
 

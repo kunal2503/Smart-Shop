@@ -23,7 +23,7 @@ export const AdminUsers = () => {
     const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:3000/api/admin/users", {
+const response = await axios.get("https://smart-shop-backend-hofb.onrender.com/api/admin/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data);
@@ -48,8 +48,8 @@ export const AdminUsers = () => {
         toast.error("No changes to update");
         return;
       }
-      const response = await axios.put(
-        `http://localhost:3000/api/admin/users/${userId}`,
+const response = await axios.put(
+        `https://smart-shop-backend-hofb.onrender.com/api/admin/users/${userId}`,
         updates,
         { headers: { Authorization: `Bearer ${token}` } }
       );

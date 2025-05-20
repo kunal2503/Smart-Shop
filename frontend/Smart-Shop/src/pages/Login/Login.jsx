@@ -22,7 +22,7 @@ const LoginPage = () =>{
     const handleLogin = async (e) =>{
         e.preventDefault();
         try{
-            const response = await axiosInstance.post("http://localhost:3000/api/auth/login",form)
+const response = await axiosInstance.post("https://smart-shop-backend-hofb.onrender.com/api/auth/login",form)
             console.log("Login response data:", response.data);
             localStorage.setItem("token", response.data.token)
              localStorage.setItem("user", JSON.stringify(response.data.user));
