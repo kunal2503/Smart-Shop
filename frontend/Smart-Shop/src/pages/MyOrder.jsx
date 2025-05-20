@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from '../../utils/axiosInstance';
 
 const MyOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -32,11 +32,7 @@ const MyOrder = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/orders/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.get(`/api/orders/`);
       setOrders(response.data);
     } catch (error) {
       console.error("Error fetching orders:", error);

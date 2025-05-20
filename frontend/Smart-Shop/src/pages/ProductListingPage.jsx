@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axioinstance from "../../utils/axiosInstance"
 import ProductCard from '../components/ProductCard';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,7 @@ const ProductListingPage = () => {
 
   const fetchProducts = async () => {
     try{
-      const response = await axios.get('http://localhost:3000/api/products/all-products');
+      const response = await axioinstance.get('api/products/all-products');
       setProducts(response.data.products);
     } catch(err){
       console.log(err);

@@ -1,19 +1,16 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 import { useState,useEffect } from 'react';
 
 const Profile = () => {
   const navigate= useNavigate();
   const [name, setName] = useState('');
 useEffect(() => {
-  const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
-  if (!token || !userId) return;
+  if (!userId) return;
 
-  axios.get(`http://localhost:3000/api/users/profile/${userId}`, {
-    headers: { Authorization: `Bearer ${token}` }
-  })
+  axiosInstance.get(`/api/users/profile/${userId}`)
   .then(res => setName(res.data.name || "User"))
   .catch(err => console.error("Failed to fetch name:", err));
 }, []);

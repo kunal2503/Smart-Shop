@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from '../../utils/axiosInstance';
 import { toast } from "react-toastify";
 import PasswordInput from "../components/PasswordInput";
 
@@ -35,16 +35,11 @@ const ForgetPassword = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/change-password",
+      const response = await axiosInstance.post(
+        `/api/auth/change-password`,
         {
           oldPassword,
           newPassword,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
         }
       );
 

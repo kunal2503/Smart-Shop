@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from '../../utils/axiosInstance';
 import { toast } from "react-toastify";
 
 const ForgotPasswordRequest = () => {
@@ -8,7 +8,7 @@ const ForgotPasswordRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/auth/forgot-password", { email });
+      const response = await axiosInstance.post(`/api/auth/forgot-password`, { email });
       toast.success(response.data.message);
       setEmail("");
     } catch (err) {

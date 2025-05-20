@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
 import { CartContext } from "../components/context/CartContext";
 import Footer from "../components/Footer";
-import axios from "axios";
+import axiosInstance from '../../utils/axiosInstance';
 
 const ProductDetailsPage = () => {
   const {id} = useParams(); // Assuming you're using react-router-dom for routing
@@ -12,7 +12,7 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/products/${id}`);
+        const response = await axiosInstance.get(`/api/products/${id}`);
         setProducts(response.data.product);
       } catch (error) {
         console.error("Error fetching products:", error);
