@@ -10,7 +10,7 @@ const CartProvider = ({ children }) => {
   const getCartItems = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:3000/api/cart/", {
+      const response = await axios.get("https://smart-shop-backend-hofb.onrender.com/api/cart/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,7 +44,7 @@ const CartProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:3000/api/cart/add-to-cart",
+        "https://smart-shop-backend-hofb.onrender.com/api/cart/add-to-cart",
         { productId: product._id },
         {
           headers: {
@@ -63,7 +63,7 @@ const CartProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:3000/api/cart/remove-to-cart",
+        "https://smart-shop-backend-hofb.onrender.com/api/cart/remove-to-cart",
         { productId },
         {
           headers: {
