@@ -15,7 +15,7 @@ const CheckOutPage = () => {
     }
 
     try {
-      const response = await axios.post("/api/orders", orderData, {
+      const response = await axios.post("https://smart-shop-backend-hofb.onrender.com/api/orders", orderData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

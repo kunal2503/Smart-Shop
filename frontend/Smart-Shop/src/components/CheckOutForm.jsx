@@ -40,7 +40,7 @@ const CheckOutForm = ({ placeOrder, selectedItems = [] }) => {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/users/profile/${userId}`,
+          `https://smart-shop-backend-hofb.onrender.com/api/users/profile/${userId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
