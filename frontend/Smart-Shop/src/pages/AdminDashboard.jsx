@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../../utils/axiosInstance";
+import axiosInstance from "../utils/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get(
-        "http://localhost:3000/api/admin/users",
+        "/api/admin/users",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get(
-        "http://localhost:3000/api/admin/orders",
+        "/api/admin/orders",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   const fetchProducts = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("http://localhost:3000/api/products", {
+      const response = await axiosInstance.get("/api/products", {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Products API Response:", response.data);
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get(
-        "http://localhost:3000/api/admin/analytics",
+        "/api/admin/analytics",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.post(
-        "http://localhost:3000/api/products/add-products",
+        "/api/products/add-products",
         productForm,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -130,7 +130,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       await axiosInstance.delete(
-        `http://localhost:3000/api/admin/products/${productId}`,
+        `/api/admin/products/${productId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
