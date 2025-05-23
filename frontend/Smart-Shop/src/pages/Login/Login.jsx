@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate ,useLocation} from "react-router-dom";
-import axiosInstance from "../../../utils/axiosInstance";
+import axiosInstance from "../../utils/api";
 import { toast } from "react-toastify";
 import PasswordInput from "../../components/PasswordInput";
 
@@ -22,7 +22,7 @@ const LoginPage = () =>{
     const handleLogin = async (e) =>{
         e.preventDefault();
         try{
-const response = await axiosInstance.post("https://smart-shop-backend-hofb.onrender.com/api/auth/login",form)
+const response = await axiosInstance.post("/api/auth/login",form)
             console.log("Login response data:", response.data);
             localStorage.setItem("token", response.data.token)
              localStorage.setItem("user", JSON.stringify(response.data.user));

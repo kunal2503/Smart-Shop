@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from 'axios'
 import { toast } from "react-toastify";
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import axiosInstance from '../../utils/axiosInstance';
+import axiosInstance from '../../utils/api';
 
 const Signup = () => {
     const location = useLocation();
@@ -24,9 +23,9 @@ const Signup = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try{
-const response = await axiosInstance.post("https://smart-shop-backend-hofb.onrender.com/api/auth/signup",form)
+const response = await axiosInstance.post("/api/auth/signup",form)
 
-            const {token , user } = response.data;
+            const {token} = response.data;
 
             localStorage.setItem("token",token);
 
