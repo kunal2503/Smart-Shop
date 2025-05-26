@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cart");
@@ -18,9 +20,9 @@ const app = express();
 
 // Middleware
 const allowedOrigins = [
+  'https://smart-shop-jids.vercel.app',
   'http://localhost:5173',
-  'http://localhost:5174',
-  'https://smart-shop-jids.vercel.app'
+  'http://localhost:5174'
 ];
 
 app.use(cors({
@@ -33,6 +35,19 @@ app.use(cors({
   },
   credentials: true // Required if you use cookies or auth headers
 }));
+
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use(limiter);
+
+app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -52,7 +67,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: "Internal Server Error" });
 });
-app.use(morgan("combined"))
 
 // Connect MongoDB
 // "mongodb://localhost:27017/smart_Buy"

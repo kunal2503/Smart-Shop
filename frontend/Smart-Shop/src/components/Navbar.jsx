@@ -1,33 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../components/context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsShopWindow } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { AiFillProduct } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { FaUserShield, FaBox, FaChartBar, FaUsers, FaSignOutAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-// import {FaUse} 
 
 const Navbar = () => {
   const { cartItem } = useContext(CartContext);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
-  // Ensure cartItem is an array and calculate totalQuantity
   const totalItems = Array.isArray(cartItem)
     ? cartItem.reduce((sum, item) => sum + (item?.quantity || 0), 0)
     : 0;
-  const totalQuantity = totalItems > 0 ? totalItems : 0;
 
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user)
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-      // Admin Navbar
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/product?search=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      navigate("/product");
+    }
+  };
+
   if (token && user?.role === "admin") {
     return (
       <nav className="bg-gray-900 text-white px-4 py-3 flex justify-between items-center shadow">
@@ -35,13 +45,15 @@ const Navbar = () => {
           <FaUserShield className="text-blue-400" />
           SmartBuy Admin
         </div>
-        <div className="flex-grow max-w-md mx-4">
+        <form onSubmit={handleSearchSubmit} className="flex-grow max-w-md mx-4">
           <input
             type="text"
             placeholder="Search Items"
             className="w-full px-3 py-1 rounded bg-gray-800 text-white focus:outline-none"
+            value={searchQuery}
+            onChange={handleInputChange}
           />
-        </div>
+        </form>
         <div className="flex items-center gap-5 text-sm sm:text-base">
           <Link to="/admin-dashboard" className="hover:text-blue-400 flex items-center gap-1">
             <FaChartBar /> Dashboard
@@ -63,7 +75,6 @@ const Navbar = () => {
     );
   }
 
-  // User Navbar
   if (token && user?.role === "user") {
     return (
       <nav className="flex items-center justify-between bg-gray-950 shadow-md py-4 px-6">
@@ -73,13 +84,15 @@ const Navbar = () => {
             <span className="font-medium text-white">SmartBuy</span>
           </Link>
         </div>
-        <div>
+        <form onSubmit={handleSearchSubmit} className="flex-grow max-w-md mx-4">
           <input
             type="text"
             placeholder="Search Items"
             className="p-2 rounded text-white outline-none bg-gray-900 w-full"
+            value={searchQuery}
+            onChange={handleInputChange}
           />
-        </div>
+        </form>
         <div className="flex items-center gap-6">
           <Link to="/product" className="flex gap-1 text-white">
             <AiFillProduct className="size-6" />
@@ -116,7 +129,6 @@ const Navbar = () => {
     );
   }
 
-  // Public Navbar (Not logged in)
   return (
     <nav className="flex items-center justify-between bg-gray-950 shadow-md py-4 px-6">
       <div>
@@ -125,13 +137,15 @@ const Navbar = () => {
           <span className="font-medium text-white">SmartBuy</span>
         </Link>
       </div>
-      <div>
+      <form onSubmit={handleSearchSubmit} className="flex-grow max-w-md mx-4">
         <input
           type="text"
           placeholder="Search Items"
           className="p-2 rounded text-white outline-none bg-gray-900 w-full"
+          value={searchQuery}
+          onChange={handleInputChange}
         />
-      </div>
+      </form>
       <div className="flex items-center gap-6">
         <Link to="/product" className="flex gap-1 text-white">
           <AiFillProduct className="size-6" />

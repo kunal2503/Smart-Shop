@@ -28,7 +28,10 @@ exports.addProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
     try{
-        const products = await Product.find();
+        const searchQuery = req.query.search || "";
+        const products = await Product.find({
+            name: { $regex: searchQuery, $options: "i" }
+        });
         return res.status(200).json({products});
     } catch(err){
         console.log(err);
