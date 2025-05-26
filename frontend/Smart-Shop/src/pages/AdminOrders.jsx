@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../utils/api";
+import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 // import { useNavigate } from "react-router-dom";
 
@@ -23,6 +23,7 @@ const AdminOrders = () => {
       const response = await axiosInstance.get("/api/admin/orders", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(response.data);
       setOrders(response.data);
     } catch (err) {
       console.error("Error fetching orders:", err);
@@ -54,9 +55,11 @@ const AdminOrders = () => {
       toast.error("Failed to update order status");
     }
   };
+  console.log(orders)
   return (
     <section className="mb-10">
   <h2 className="text-2xl font-bold mb-4 text-gray-800">Orders</h2>
+  {console.log("Orders:", orders)}
   <ul className="space-y-4">
     {orders.map((order) => (
       <li key={order._id} className="bg-white p-4 rounded-xl shadow hover:shadow-md transition-all border border-gray-200">

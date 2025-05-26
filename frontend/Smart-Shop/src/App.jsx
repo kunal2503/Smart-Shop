@@ -25,6 +25,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminOrders from "./pages/AdminOrders";
 import { AdminUsers } from "./pages/AdminUsers";
 import PrivateAdminRoute from "./pages/PrivateAdminRoute";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
             <AdminUsers />
             </PrivateAdminRoute>
             } />;  
+            <Route path="*" element={<NotFound/>} />
         </Routes>
         <Footer/>
       </Router>

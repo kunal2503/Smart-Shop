@@ -1,11 +1,13 @@
 import React, { createContext, useState,useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState([]);
+  // const navigate = useNavigate();
 
   const getCartItems = useCallback(async () => {
     try {
@@ -43,6 +45,7 @@ const CartProvider = ({ children }) => {
   const addToCart = async (product) => {
     try {
       const token = localStorage.getItem("token");
+      
       await axios.post(
         "https://smart-shop-backend-hofb.onrender.com/api/cart/add-to-cart",
         { productId: product._id },

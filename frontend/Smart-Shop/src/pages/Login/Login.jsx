@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate ,useLocation} from "react-router-dom";
-import axiosInstance from "../../utils/api";
+import axiosInstance from "../../../utils/axiosInstance";
 import { toast } from "react-toastify";
 import PasswordInput from "../../components/PasswordInput";
 

@@ -4,7 +4,6 @@ import { useLocation ,Link} from 'react-router-dom'
 const OrderDetails = () => {
   const location = useLocation()
   const order = location.state;
-  console.log(order)
   if (!order) {
     return (
       <div className="text-center py-20">

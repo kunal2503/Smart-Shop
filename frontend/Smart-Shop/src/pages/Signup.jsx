@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { toast } from "react-toastify";
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import axiosInstance from '../../utils/api';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Signup = () => {
     const location = useLocation();

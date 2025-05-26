@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+
+/* Tailwind-friendly custom scrollbar style */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #3b82f6; /* Tailwind's blue-600 */
+  border-radius: 9999px;
+  border: 2px solid white;
+}
+
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 transparent;
+}
